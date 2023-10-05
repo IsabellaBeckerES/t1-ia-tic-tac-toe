@@ -32,7 +32,7 @@ class App {
                 if(b.getStatus() == "ganhou"){
                     var aux = b.emAndamento();
                     if(aux != null){
-                        Board board = new Board(b.emAndamento());                    
+                        Board board = new Board(aux);                    
                         listEmAndamento.add(board);
                     }                    
                 }

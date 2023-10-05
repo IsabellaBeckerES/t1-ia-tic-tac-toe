@@ -166,9 +166,7 @@ public class Board {
         }
 
         return boardInvertido;
-    }
-
-    
+    }    
 
     public String[][] emAndamento(){
         Random gerador = new Random();
@@ -180,10 +178,34 @@ public class Board {
             boardEmAndamento[gerador.nextInt(2)][gerador.nextInt(2)] = "b";
         }
 
+        if(!jogoValido(boardEmAndamento)) return null;
+
         if(horizontal(boardEmAndamento) || vertical(boardEmAndamento) || diagonal(boardEmAndamento))
             return null;
 
         return boardEmAndamento;
+    }
+
+    // verifica se o jogo em adamento é válido
+    private boolean jogoValido(String[][] b){
+        int contX = 0;
+        int contO = 0;
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(b[i][j].equals("x")){
+                    contX++;
+                } 
+                else if(b[i][j].equals("o")){
+                    contO++;
+                }
+            }            
+        }
+        int dif = contX - contO;
+        if(dif <= -2 || dif >= 2 ){
+            return false;
+        }
+        return true;
     }
     
 }
