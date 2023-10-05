@@ -10,6 +10,18 @@ public class Board {
         this.status = avaliar(this.board);
     }
 
+    public String[][] getBoard(){
+        return this.board;
+    }
+
+    public void setBoard(String[][] board){
+        this.board = board;
+    }
+
+    public String getStatus(){
+        return status;
+    }
+
     public String avaliar(String[][] board) {
         String result = "empate";
 
@@ -105,6 +117,39 @@ public class Board {
         }
         
         return sb.toString() + this.status;
+    }
+
+    public String toStringFormat(){    
+        StringBuilder sb  = new StringBuilder();  
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {                
+                sb.append(this.board[i][j].toString());                
+            }
+            sb.append("\n");
+        }
+        
+        return sb.toString() + this.status;
+    }
+
+    public String[][] invertido(){
+        String[][] boardInvertido = new  String[3][3];
+        
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(this.board[i][j].equals("x")){
+                    boardInvertido[i][j] = "o";
+                } 
+                else if(this.board[i][j].equals("o")){
+                    boardInvertido[i][j] = "x";
+                }
+                else {
+                    boardInvertido[i][j] = "b";
+                }                 
+            }            
+        }
+
+        return boardInvertido;
     }
     
 }
