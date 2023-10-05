@@ -17,7 +17,7 @@ class App {
             readWrite.write(list, "test.csv");
 
             // para criar mais casos de empate
-            ArrayList<Board> listInvert = new ArrayList();
+            ArrayList<Board> listInvert = new ArrayList<>();
             for (Board b : list) {
                 if(b.getStatus() == "empate"){
                     Board board = new Board(b.invertido());
