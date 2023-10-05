@@ -13,7 +13,7 @@ class App {
             ReadWrite readWrite = new ReadWrite();
 
             // não alterei o dataset original só criei outro
-            ArrayList<Board>  list = readWrite.read();
+            ArrayList<Board>  list = readWrite.read("tic-tac-toe.csv");
             readWrite.write(list, "test.csv");
 
             // para criar mais casos de empate

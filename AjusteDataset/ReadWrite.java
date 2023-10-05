@@ -10,18 +10,22 @@ import java.util.Scanner;
 
 public class ReadWrite {
 
-    private String fileIn = "tic-tac-toe.csv";
-    private String fileOut = "test.csv";
+    private String fileInPadrao = "tic-tac-toe.csv";
+    private String fileOutPadrao = "test.csv";
 
-    public ArrayList<Board> read() {
+    public ArrayList<Board> read(String fileName) {
         String line = "";
         int cont;
         String[][] auxBoard;
         ArrayList<Board> list = new ArrayList<>();
         Scanner sc;
 
+        if(fileName == null){
+            fileName = fileInPadrao;
+        }
+
         try {
-            sc = new Scanner(Paths.get(fileIn));             
+            sc = new Scanner(Paths.get(fileName));             
 
             while(sc.hasNext()) {                
                 
@@ -46,10 +50,15 @@ public class ReadWrite {
             e.getMessage();
         }
         
+        System.out.println("Leitura com sucesso do arquivo " + fileName);
+        System.out.println("\n");
         return list;
     }
 
     public void write(ArrayList<Board> list, String fileName) throws IOException {
+        if(fileName == null){
+            fileName = fileOutPadrao;
+        }
         FileWriter fileWriter = new FileWriter(new File(fileName));  
         BufferedWriter bw  = new BufferedWriter (fileWriter);
 
@@ -59,6 +68,7 @@ public class ReadWrite {
         }
 
         bw.close();
-        System.out.println("Fim");
+        System.out.println("Escrita com sucesso do arquivo " + fileName);
+        System.out.println("\n");
     }
 }
