@@ -26,6 +26,19 @@ class App {
             }            
             readWrite.write(listInvert, "empate-invetido.csv");
 
+            // para criar casos de jogo ainda em andamento
+            ArrayList<Board> listEmAndamento= new ArrayList<>();
+            for (Board b : list) {
+                if(b.getStatus() == "ganhou"){
+                    var aux = b.emAndamento();
+                    if(aux != null){
+                        Board board = new Board(b.emAndamento());                    
+                        listEmAndamento.add(board);
+                    }                    
+                }
+            }
+            readWrite.write(listEmAndamento, "jogando2.csv");
+
         } catch (IOException e) {
             e.printStackTrace();
             e.getMessage();

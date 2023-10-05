@@ -1,5 +1,7 @@
 package AjusteDataset;
 
+import java.util.Random;
+
 public class Board {
     
     private String[][] board;
@@ -7,7 +9,7 @@ public class Board {
 
     public Board(String[][] board) {
         this.board = board;
-        this.status = avaliar(this.board);
+        this.status = setStatus(this.board);
     }
 
     public String[][] getBoard(){
@@ -22,7 +24,7 @@ public class Board {
         return status;
     }
 
-    public String avaliar(String[][] board) {
+    public String setStatus(String[][] board) {
         String result = "empate";
 
         if(horizontal(board)) return result = "ganhou";
@@ -30,6 +32,8 @@ public class Board {
         if(vertical(board)) return result = "ganhou";
 
         if(diagonal(board)) return result = "ganhou";
+
+        if(temJogo(board)) return result = "jogando";
 
         return result;
     }
@@ -106,6 +110,18 @@ public class Board {
         return false;
     }
 
+    private boolean temJogo(String[][] board){
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(this.board[i][j].equals("b")){
+                    return true;
+                }               
+            }            
+        }
+        return false;
+    }
+
     public String toString(){    
         StringBuilder sb  = new StringBuilder();  
 
@@ -150,6 +166,24 @@ public class Board {
         }
 
         return boardInvertido;
+    }
+
+    
+
+    public String[][] emAndamento(){
+        Random gerador = new Random();
+        String[][] boardEmAndamento = new  String[3][3];
+        boardEmAndamento = getBoard();
+
+        int limite = gerador.nextInt(8);
+        for(int i = 0; i < limite; i++){
+            boardEmAndamento[gerador.nextInt(2)][gerador.nextInt(2)] = "b";
+        }
+
+        if(horizontal(boardEmAndamento) || vertical(boardEmAndamento) || diagonal(boardEmAndamento))
+            return null;
+
+        return boardEmAndamento;
     }
     
 }
