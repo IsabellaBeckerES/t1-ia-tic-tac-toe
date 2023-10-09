@@ -38,7 +38,7 @@ public class Board {
         return result;
     }
 
-    private boolean horizontal(String[][] board){        
+    public boolean horizontal(String[][] board){        
         int contXHoriz;
         int contOHoriz;
 
@@ -65,7 +65,7 @@ public class Board {
         return false;
     }
 
-    private boolean vertical(String[][] board) {
+    public boolean vertical(String[][] board) {
         int contXVert;
         int contOvert;
 
@@ -187,7 +187,7 @@ public class Board {
     }
 
     // verifica se o jogo em adamento é válido
-    private boolean jogoValido(String[][] b){
+    public boolean jogoValido(String[][] b){
         int contX = 0;
         int contO = 0;
 
@@ -207,5 +207,27 @@ public class Board {
         }
         return true;
     }
-    
+
+    private String[][] criaBoardEmpate(){
+        Random gerador = new Random();
+        String[][] boardEmpate = new  String[3][3];
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(gerador.nextInt(2) == 1){
+                    boardEmpate[i][j] = "x";
+                }
+                else {
+                    boardEmpate[i][j] = "o";
+                }                
+            }       
+        }
+
+        if(!jogoValido(boardEmpate)) return boardEmpate = null;
+
+        if(horizontal(boardEmpate) || vertical(boardEmpate) || diagonal(boardEmpate))
+            return null;
+
+        return boardEmpate;
+    }     
 }
